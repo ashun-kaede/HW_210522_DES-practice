@@ -26,7 +26,7 @@
 - 目前支援ACSII輸入，輸出則為HEX（細節內文會說明），不過無論輸入輸出皆可以用ASCII開啟。
 
 ## 二、程式架構
-![](https://i.imgur.com/4aVYJOY.png =300x)
+<img src="https://i.imgur.com/4aVYJOY.png" alt="Cover" width="30%"/>
 
 本程式為階層式，分為四個py檔案：
 1. UI_mian.py：圖形化介面
@@ -40,7 +40,7 @@
 AllTable的部分比較簡單，單純存放各種table以供DES之用。
 DES_main主要分為三個部分：編碼轉換、常用函數、主函式，細節部分程式碼中都有做註解。
 - **編碼轉換**提供ASCII、binary與hex互轉。DES_main模塊支持64bits hex輸入64bits hex輸出，但DES算法需要基於binary，因此一開始會先把輸入的hex轉成binary，以便操作，輸出時再轉成hex。詳細可參考下圖：
-![](https://i.imgur.com/5mPa1PT.png =300x)
+<img src="https://i.imgur.com/5mPa1PT.png" alt="Cover" width="30%"/>
 
 - **常用函數**包括代換函數、左移函數與XOR函數，代換函數用於各類表格轉換。
 
@@ -66,7 +66,7 @@ UI_main主要生成與控制圖形介面，總共分成8個區塊，從frame1到
 
 - 在DES算法開始後，會啟動wait_finish()，每個0.1秒會檢測一次output檔案的大小狀態，如果檢測到檔案大小沒有改變，代表output.txt不再有檔案寫入，即可判斷已經加密完成。加密完成後，輸出預覽會讀取output.txt並預覽出檔案中前1000個字元。
 
-![](https://i.imgur.com/3liRCRK.png =300x)
+<img src="https://i.imgur.com/3liRCRK.png" alt="Cover" width="30%"/>
 
 ## 六、待解決問題
 1. 部分特殊字元在轉碼(ascii to binary)過程中會不正常，經觀察後發現原因：一般的字元經過ascii to binary後會轉成8個位元，但特殊字元（例如『“』）會轉出14個位元，由於在最後轉回ASCII時是以8位切割，因此會出問題。目前遇到特殊字元時，強制取14位的前8位，導致在特殊字元的解碼上會出問題。
