@@ -3,16 +3,16 @@
 ## 2021/05/20 
 - 這是我的一個學校的功課項目，目前已經完成大致功能，但仍有以下bug尚在解決:
 1. 部分特殊字元在轉碼(ascii to binary)過程中會不正常，目前以跳過處理
-2. 已完成 ECB CBC CFB OFB 模式，但 CRT 模式上有問題，解決中。
+2. 已完成 ECB CBC CFB OFB 模式，但 CTR 模式上有問題，解決中。
 
 - I made this for my homework from school. It's almost done, but it still have some bug.
 1. For some reason, special characters can not be encripted. (probably is decode problem)
-2. I have done 4 mode in DES (ECB CBC CFB OFB), but the last one(CRT) still have problem, resolving.
+2. I have done 4 mode in DES (ECB CBC CFB OFB), but the last one(CTR) still have problem, resolving.
 
 - このプロジェクトは学校の宿題です。もうすぐ完成ですけど、まだ問題は2つがあります：
 1. 特殊文字はまだ暗号化できません、多分decodeの問題です。
   <ps.『decode』どうやって翻訳しますか？教えてください！>
-2. モッドの部分は５種類の中でもう４種類(ECB CBC CFB OFB)完成しました。最後のCRTはまだ修正しています。
+2. モッドの部分は５種類の中でもう４種類(ECB CBC CFB OFB)完成しました。最後のCTRはまだ修正しています。
 
 ===============================================================================
 
@@ -71,6 +71,6 @@ UI_main主要生成與控制圖形介面，總共分成8個區塊，從frame1到
 ## 六、待解決問題
 1. 部分特殊字元在轉碼(ascii to binary)過程中會不正常，經觀察後發現原因：一般的字元經過ascii to binary後會轉成8個位元，但特殊字元（例如『“』）會轉出14個位元，由於在最後轉回ASCII時是以8位切割，因此會出問題。目前遇到特殊字元時，強制取14位的前8位，導致在特殊字元的解碼上會出問題。
 
-2. 已完成ECB、CBC、CFB、OFB 模式，雖然已經寫好CRT模式，但解碼時會出問題，解決中。
+2. 已完成ECB、CBC、CFB、OFB 模式，雖然已經寫好CTR模式，但解碼時會出問題，解決中。
 
 3. 理想狀況是讓明文為ASCII編碼輸出，但明文經過加密後輸出的Binary密文很有可能無法正確轉換成ASCII字元（其實都可以轉，但ASCII中包含tab或空格等特殊編碼），故密文使用HEX作為輸出。
