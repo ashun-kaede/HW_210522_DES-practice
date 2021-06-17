@@ -107,7 +107,7 @@ def DES_main():
                     mode=combo1.get()
                     if combo2.get() == '加密':
                         dm.DES(FILE, 'enc',mode)
-                        file_path = os.path.dirname(os.path.abspath(__file__)) + '/result/output.txt'
+                        file_path = os.path.dirname(os.path.abspath(__file__)) + '/result/Cipher_output.txt'
                         wait_finish(file_path)
                         f = open(file_path, 'r', encoding='utf-8')
                         text = f.read(1000)
@@ -118,7 +118,7 @@ def DES_main():
                         output_text.configure(state='disable')
                     else:
                         dm.DES(FILE, 'dec',mode)
-                        file_path = os.path.dirname(os.path.abspath(__file__)) + '/result/output.txt'
+                        file_path = os.path.dirname(os.path.abspath(__file__)) + '/result/Decrypt_output.txt'
                         wait_finish(file_path)
                         f = open(file_path, 'r', encoding='utf-8')
                         text = f.read(1000)
@@ -201,9 +201,9 @@ if __name__ == '__main__':
     combo2.current(0)
 
     frame4 = tk.Frame(window)
-    frame4.grid(row=3, column=0, sticky='we')
-    tk.Button(frame4,text='開啟檔案位置',command=open_input_file_window).pack(side='right',padx=10, pady=5)
-    tk.Label(frame4, text='文檔預覽(預覽1000字)：').pack(side='left',padx=10)
+    frame4.grid(row=3, column=0, sticky='w')
+    tk.Label(frame4, text='文檔預覽(預覽1000字)：   ').pack(side='left',padx=10)
+    tk.Button(frame4,text='開啟檔案位置',command=open_input_file_window).pack(side='left',padx=10, pady=5)
 
     frame5 = tk.Frame(window)
     frame5.grid(row=4, column=0, sticky='w')
@@ -216,9 +216,9 @@ if __name__ == '__main__':
     go_bin.pack(pady=5)
 
     frame7 = tk.Frame(window)
-    frame7.grid(row=6, column=0, sticky='we')
-    tk.Button(frame7,text='開啟檔案位置', command=open_output_file_window).pack(side='right',padx=10,pady=5)
-    tk.Label(frame7, text='輸出預覽(預覽1000字)：').pack(side='left', padx=10)
+    frame7.grid(row=6, column=0, sticky='w')
+    tk.Label(frame7, text='輸出預覽(預覽1000字)：   ').pack(side='left', padx=10)
+    tk.Button(frame7,text='開啟檔案位置', command=open_output_file_window).pack(side='left',padx=10,pady=5)
 
     frame8 = tk.Frame(window)
     frame8.grid(row=7, column=0, sticky='w')

@@ -14,23 +14,23 @@ def ECB_mode(file, E_or_D):
     key = f.read()
     key = ascii_to_hex(key)
     if E_or_D == 'enc':
-        d = open("./result/output.txt", "w", encoding='utf-8')
+        d = open("./result/Cipher_output.txt", "w", encoding='utf-8')
         d.write('')
         with open(file, 'r', encoding='utf-8') as f:
             for text in iter(lambda: f.read(8), ''):
-                text = ascii_to_hex(text)
+                text = ascii_to_hex(text.ljust(8,' '))
                 cipherText = DES_func(key, text, 'enc')  
-                d = open("./result/output.txt", "a", encoding='utf-8')
+                d = open("./result/Cipher_output.txt", "a", encoding='utf-8')
                 d.write(cipherText)
             d.close()
     elif E_or_D == 'dec':
-        d = open("./result/output.txt", "w", encoding='utf-8')
+        d = open("./result/Decrypt_output.txt", "w", encoding='utf-8')
         d.write('')
         with open(file, 'r', encoding='utf-8') as f:
             for text in iter(lambda: f.read(16), ''):
                 plainText = DES_func(key, text, 'dec')
                 plainText = hex_to_ascii(plainText)
-                d = open("./result/output.txt", "a", encoding='utf-8')
+                d = open("./result/Decrypt_output.txt", "a", encoding='utf-8')
                 d.write(plainText)
         d.close()
 # =========================================================
@@ -42,24 +42,24 @@ def CBC_mode(file, E_or_D):
     key = ascii_to_hex(key)
     IV = '0101010010101011101010000110110111010111110000101011010101000110'
     if E_or_D == 'enc':
-        d = open("./result/output.txt", "w", encoding='utf-8')
+        d = open("./result/Cipher_output.txt", "w", encoding='utf-8')
         d.write('')
         with open(file, 'r', encoding='utf-8') as f:
             temp = IV
             for text in iter(lambda: f.read(8), ''):
                 iv_temp = temp
-                text_temp = ascii_to_binary(text)
+                text_temp = ascii_to_binary(text.ljust(8,' '))
                 n_List = xor(list(text_temp), list(iv_temp))
                 n = ''.join(str(x) for x in n_List) 
                 text = binary_to_hex(n)
                 cipherText = DES_func(key, text, 'enc')
                 temp = hex_to_binary(cipherText)
-                d = open("./result/output.txt", "a", encoding='utf-8')
+                d = open("./result/Cipher_output.txt", "a", encoding='utf-8')
                 d.write(cipherText)
         d.close()
     elif E_or_D == 'dec':
         temp = IV
-        d = open("./result/output.txt", "w", encoding='utf-8')
+        d = open("./result/Decrypt_output.txt", "w", encoding='utf-8')
         d.write('')
         with open(file, 'r', encoding='utf-8') as f:
             for text in iter(lambda: f.read(16), ''):
@@ -70,7 +70,7 @@ def CBC_mode(file, E_or_D):
                 plainText = ''.join(str(x) for x in plainList) 
                 plainText = binary_to_ascii(plainText)
                 temp = hex_to_binary(text)
-                d = open("./result/output.txt", "a", encoding='utf-8')
+                d = open("./result/Decrypt_output.txt", "a", encoding='utf-8')
                 d.write(plainText)
         d.close()
 # =========================================================
@@ -82,23 +82,23 @@ def CFB_mode(file, E_or_D):
     key = ascii_to_hex(key)
     IV = '0101010010101011101010000110110111010111110000101011010101000110'
     if E_or_D == 'enc':
-        d = open("./result/output.txt", "w", encoding='utf-8')
+        d = open("./result/Cipher_output.txt", "w", encoding='utf-8')
         d.write('')
         with open(file, 'r', encoding='utf-8') as f:
             iv_enc = binary_to_hex(IV)
             for text in iter(lambda: f.read(8), ''):
                 iv_enc = DES_func(key, iv_enc, 'enc')
                 iv_temp = hex_to_binary(iv_enc)
-                text_temp = ascii_to_binary(text)
+                text_temp = ascii_to_binary(text.ljust(8,' '))
                 cipherList = xor(list(text_temp), list(iv_temp))
                 cipherText = ''.join(str(x) for x in cipherList) 
                 cipherText = binary_to_hex(cipherText)
                 iv_enc = cipherText
-                d = open("./result/output.txt", "a", encoding='utf-8')
+                d = open("./result/Cipher_output.txt", "a", encoding='utf-8')
                 d.write(cipherText)
         d.close()
     elif E_or_D == 'dec':
-        d = open("./result/output.txt", "w", encoding='utf-8')
+        d = open("./result/Decrypt_output.txt", "w", encoding='utf-8')
         d.write('')
         with open(file, 'r', encoding='utf-8') as f:
             iv_enc = binary_to_hex(IV)
@@ -110,7 +110,7 @@ def CFB_mode(file, E_or_D):
                 plainText = ''.join(str(x) for x in plainList) 
                 plainText = binary_to_ascii(plainText)
                 iv_enc = text
-                d = open("./result/output.txt", "a", encoding='utf-8')
+                d = open("./result/Decrypt_output.txt", "a", encoding='utf-8')
                 d.write(plainText)
         d.close()
 # =========================================================
@@ -122,22 +122,22 @@ def OFB_mode(file, E_or_D):
     key = ascii_to_hex(key)
     IV = '0101010010101011101010000110110111010111110000101011010101000110'
     if E_or_D == 'enc':
-        d = open("./result/output.txt", "w", encoding='utf-8')
+        d = open("./result/Cipher_output.txt", "w", encoding='utf-8')
         d.write('')
         with open(file, 'r', encoding='utf-8') as f:
             iv_enc = binary_to_hex(IV)
             for text in iter(lambda: f.read(8), ''):
                 iv_enc = DES_func(key, iv_enc, 'enc')
                 iv_temp = hex_to_binary(iv_enc)
-                text_temp = ascii_to_binary(text)
+                text_temp = ascii_to_binary(text.ljust(8,' '))
                 cipherList = xor(list(text_temp), list(iv_temp))
                 cipherText = ''.join(str(x) for x in cipherList) 
                 cipherText = binary_to_hex(cipherText)
-                d = open("./result/output.txt", "a", encoding='utf-8')
+                d = open("./result/Cipher_output.txt", "a", encoding='utf-8')
                 d.write(cipherText)
         d.close()
     elif E_or_D == 'dec':
-        d = open("./result/output.txt", "w", encoding='utf-8')
+        d = open("./result/Decrypt_output.txt", "w", encoding='utf-8')
         d.write('')
         with open(file, 'r', encoding='utf-8') as f:
             iv_enc = binary_to_hex(IV)
@@ -148,7 +148,7 @@ def OFB_mode(file, E_or_D):
                 plainList = xor(list(text_temp), list(iv_temp))
                 plainText = ''.join(str(x) for x in plainList) 
                 plainText = binary_to_ascii(plainText)
-                d = open("./result/output.txt", "a", encoding='utf-8')
+                d = open("./result/Decrypt_output.txt", "a", encoding='utf-8')
                 d.write(plainText)
         d.close()
 # =========================================================
@@ -160,7 +160,7 @@ def CTR_mode(file, E_or_D):
     key = ascii_to_hex(key)
     if E_or_D == 'enc':
         counter = '0000000000000000'
-        d = open("./result/output.txt", "w", encoding='utf-8')
+        d = open("./result/Cipher_output.txt", "w", encoding='utf-8')
         d.write('')
         with open(file, 'r', encoding='utf-8') as f:
             for text in iter(lambda: f.read(8), ''):
@@ -168,16 +168,16 @@ def CTR_mode(file, E_or_D):
                 counter = int(counter, 16) + 1
                 counter = hex(counter)[2:].zfill(16)
                 n_temp = hex_to_binary(temp)
-                text_temp = ascii_to_binary(text)
+                text_temp = ascii_to_binary(text.ljust(8,' '))
                 cipherList = xor(list(n_temp), list(text_temp))
                 cipherText = ''.join(str(x) for x in cipherList) 
                 cipherText = binary_to_hex(cipherText)
-                d = open("./result/output.txt", "a", encoding='utf-8')
+                d = open("./result/Cipher_output.txt", "a", encoding='utf-8')
                 d.write(cipherText)
         d.close()
     elif E_or_D == 'dec':
         counter = '0000000000000000'
-        d = open("./result/output.txt", "w", encoding='utf-8')
+        d = open("./result/Decrypt_outputs.txt", "w", encoding='utf-8')
         d.write('')
         with open(file, 'r', encoding='utf-8') as f:
             for text in iter(lambda: f.read(16), ''):
@@ -189,7 +189,7 @@ def CTR_mode(file, E_or_D):
                 plainList = xor(list(n_temp), list(text_temp))
                 plainText = ''.join(str(x) for x in plainList) 
                 plainText = binary_to_hex(plainText)
-                d = open("./result/output.txt", "a", encoding='utf-8')
+                d = open("./result/Decrypt_output.txt", "a", encoding='utf-8')
                 d.write(plainText)
         d.close()
 # =========================================================
