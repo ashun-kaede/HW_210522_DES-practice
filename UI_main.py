@@ -193,7 +193,7 @@ if __name__ == '__main__':
     frame3 = tk.Frame(window)
     frame3.grid(row=2, column=0, sticky='w')
     tk.Label(frame3, text='模式：').pack(side='left',pady=5,padx=10)
-    combo1 = ttk.Combobox(frame3,values=['ECB', 'CBC', 'CFB', 'OFB', 'CTR'], state="readonly")
+    combo1 = ttk.Combobox(frame3,values=['ECB', 'CBC', 'CFB', 'OFB'], state="readonly")
     combo1.pack(side='left')
     combo1.current(0)
     combo2 = ttk.Combobox(frame3,values=['加密','解密'], state="readonly")
