@@ -163,8 +163,6 @@ def DES(file, E_or_D,mode):
         CFB_mode(file, E_or_D)
     elif mode == 'OFB':
         OFB_mode(file, E_or_D)
-    elif mode == 'CTR':
-        CTR_mode(file, E_or_D)
     else:
         print('請輸入一個正確的MODE')
 # =========================================================
