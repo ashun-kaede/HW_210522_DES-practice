@@ -153,47 +153,6 @@ def OFB_mode(file, E_or_D):
         d.close()
 # =========================================================
 
-# ==================== CTR_mode ===========================        
-def CTR_mode(file, E_or_D):
-    f = open('key.txt', 'r', encoding='utf-8')
-    key = f.read()
-    key = ascii_to_hex(key)
-    if E_or_D == 'enc':
-        counter = '0000000000000000'
-        d = open("./result/Cipher_output.txt", "w", encoding='utf-8')
-        d.write('')
-        with open(file, 'r', encoding='utf-8') as f:
-            for text in iter(lambda: f.read(8), ''):
-                temp = DES_func(key, counter, 'enc')
-                counter = int(counter, 16) + 1
-                counter = hex(counter)[2:].zfill(16)
-                n_temp = hex_to_binary(temp)
-                text_temp = ascii_to_binary(text.ljust(8,' '))
-                cipherList = xor(list(n_temp), list(text_temp))
-                cipherText = ''.join(str(x) for x in cipherList) 
-                cipherText = binary_to_hex(cipherText)
-                d = open("./result/Cipher_output.txt", "a", encoding='utf-8')
-                d.write(cipherText)
-        d.close()
-    elif E_or_D == 'dec':
-        counter = '0000000000000000'
-        d = open("./result/Decrypt_outputs.txt", "w", encoding='utf-8')
-        d.write('')
-        with open(file, 'r', encoding='utf-8') as f:
-            for text in iter(lambda: f.read(16), ''):
-                temp = DES_func(key, counter, 'enc')
-                counter = int(counter, 16) + 1
-                counter = hex(counter)[2:].zfill(16)
-                n_temp = hex_to_binary(temp)
-                text_temp = hex_to_binary(text)
-                plainList = xor(list(n_temp), list(text_temp))
-                plainText = ''.join(str(x) for x in plainList) 
-                plainText = binary_to_hex(plainText)
-                d = open("./result/Decrypt_output.txt", "a", encoding='utf-8')
-                d.write(plainText)
-        d.close()
-# =========================================================
-
 # ==================== mode選擇導向器 ======================
 def DES(file, E_or_D,mode):
     if mode == 'ECB':
